@@ -1,0 +1,75 @@
+.Main-Container{
+    width: 500px;
+    background-color: rgb(255, 255, 255);
+    border: 0.5em  solid rgb(100, 61, 155);
+    border-radius: 30px;
+    margin-right: 50px;
+
+}
+
+.Container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content:space-between;
+    padding: 2%;
+    
+}
+
+.anothermain{
+    border: 0.5em solid black;
+    /* width: 30vw; */
+    height: 70vh;
+    padding-top: 50px;
+    padding-left: 50px;
+    width: 600px;
+    border-radius: 45px;
+}
+
+.right{
+    display: flex;
+    flex-direction: column;
+    gap:1em;
+}
+.left{
+    display: flex;
+    flex-direction: column;
+    gap:1em;
+
+}
+
+.right-element{
+    display: flex;
+    flex-direction: column;
+   
+}
+
+.heading{
+   text-align: center;
+}
+/* .Gender{
+    margin-left: 10%;
+} */
+.registerButton{
+    padding-top: 3%;
+    text-align: center;
+    padding-bottom: 5%;
+
+
+}
+.registerButton button{
+    width: 97%;
+    background-color: rgb(139, 109, 180);
+    border-radius: 8px;
+}
+.gender-values{
+    display: flex;
+    align-items: flex-start;
+    padding-left: 2%;
+    gap: 5%;
+}
+.Gender h5{
+    
+    padding-left: 2%;
+    
+}
