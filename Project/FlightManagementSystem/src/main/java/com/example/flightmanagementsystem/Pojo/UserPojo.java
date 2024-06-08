@@ -21,7 +21,7 @@ public class UserPojo {
 
     private String password;
 
-    private Integer contact_number;
+    private String contact_number;
 
     private String user_address;
 }

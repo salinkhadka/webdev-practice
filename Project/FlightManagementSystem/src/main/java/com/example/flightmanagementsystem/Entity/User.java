@@ -7,25 +7,25 @@ import lombok.Setter;
 @Setter
 @Getter
 @Entity
-@Table(name="user_table")
+@Table(name = "user_table")
 public class User {
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "parameter_setup_seq_gen")
-    @SequenceGenerator(name = "parameter_setup_seq_gen", sequenceName = "parameters_setup_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq_gen")
+    @SequenceGenerator(name = "user_seq_gen", sequenceName = "user_seq", allocationSize = 1)
     @Id
     private Integer id;
 
-    @Column(name="username")
+    @Column(name = "username")
     private String username;
 
     @Column(name = "useremail")
     private String user_email;
 
-    @Column(name="password")
+    @Column(name = "password")
     private String password;
 
-    @Column(name="contact_number")
-    private Integer contact_number;
+    @Column(name = "contact_number")
+    private String contact_number; // Changed to String for phone numbers
 
-    @Column(name="user_address")
+    @Column(name = "user_address")
     private String user_address;
 }
