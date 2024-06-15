@@ -12,5 +12,8 @@ public interface  UserService {
     List<User> getAll();
 
     boolean login(String username, String password);
+     void deleteUser(Integer id);
+     User updateUser(Integer id, UserPojo userPojo);
+    public User getUserById(Integer id);
 
 }

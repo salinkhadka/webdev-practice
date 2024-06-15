@@ -30,5 +30,21 @@ public class UserController {
         String password = request.getPassword();
         return userService.login(username, password);
     }
+
+    @PutMapping("/{id}")
+    public User updateUser(@PathVariable Integer id, @RequestBody UserPojo userPojo) {
+        return userService.updateUser(id, userPojo);
     }
+
+    @DeleteMapping("/{id}")
+    public void deleteUser(@PathVariable Integer id) {
+        userService.deleteUser(id);
+    }
+//    @GetMapping("/email")
+//    public User getUserByEmail(@RequestParam String email) {
+//        return userService.getUserByEmail(email);
+//    }
+
+
+}
 

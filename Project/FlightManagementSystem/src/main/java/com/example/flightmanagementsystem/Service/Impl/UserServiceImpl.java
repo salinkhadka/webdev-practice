@@ -46,6 +46,24 @@ public class UserServiceImpl implements UserService {
         }
         return false;
     }
+
+    public User updateUser(Integer id, UserPojo userPojo) {
+        User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+        user.setUsername(userPojo.getUser_name());
+        user.setUser_email(userPojo.getUser_email());
+        user.setPassword(userPojo.getPassword());
+        user.setContact_number(userPojo.getContact_number());
+        user.setUser_address(userPojo.getUser_address());
+        return userRepository.save(user);
+    }
+    public void deleteUser(Integer id) {
+        userRepository.deleteById(id);
+    }
+    public User getUserById(Integer id) {
+        return userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+    }
+
+
 }
 
 
