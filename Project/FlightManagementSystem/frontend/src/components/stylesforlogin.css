@@ -1,0 +1,112 @@
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    background-image:url('../assets/bg.png');
+    background-size: cover;
+    height: 100vh;
+    margin: 0;
+    position: relative;
+}
+a{
+    text-decoration: none;
+}
+
+.login-container {
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 700px;
+    height: 500px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    box-sizing: border-box; /* Ensure padding is included in width/height */
+}
+
+.login-card h2 {
+    margin-bottom: 20px;
+    font-size: 28px;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    transition: border 0.3s;
+}
+
+.form-group input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.login-button {
+    width: 100%;
+    padding: 12px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.login-button:hover {
+    background-color: #0056b3;
+}
+
+.signup-message {
+    margin-top: 20px;
+}
+
+.signup-message p {
+    margin: 0;
+    font-size: 16px;
+    color: #555;
+}
+
+.signup-button {
+    margin-top: 10px;
+    padding: 10px 15px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.signup-button:hover {
+    background-color: #218838;
+}
+.forgot-password{
+    margin-top: 10px;
+    text-align: right;
+
+
+}
+.forgot-password a {
+    color: #007bff;
+    transition: color 0.3s;
+}
