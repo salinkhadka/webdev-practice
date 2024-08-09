@@ -1,0 +1,22 @@
+.tranformation{
+    height: 50px;
+    width: 50px;
+    background: #c71616;
+    transition-property: width;
+    transition-delay: 0msnewtsa;
+    transition-duration: 4s;
+} 
+.tranformation:hover{
+    width: 100px;
+}
+
+.animation{
+ 
+
+
+
+
+}
+.animation{
+
+}

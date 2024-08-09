@@ -1,0 +1,26 @@
+/* adminNavbarstyle.css */
+.navbar-admin {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(90deg, #8e2157 0%, #3c0d0d 50%, #000000 100%);
+    color: white;
+    padding: 15px;
+    font-size: 20px;
+}
+
+.logout-link {
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+    padding: 8px 16px;
+    background-color: #ff4b5c;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.logout-link:hover {
+    background-color: #ff7878;
+}
+
+

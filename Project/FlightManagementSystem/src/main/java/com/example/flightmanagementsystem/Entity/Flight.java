@@ -36,5 +36,5 @@ public class Flight {
     private String destination;
 
     @Column(name = "price")
-    private BigDecimal price;
+    private Integer price;
 }

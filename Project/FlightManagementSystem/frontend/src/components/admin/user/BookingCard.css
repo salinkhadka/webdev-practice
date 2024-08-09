@@ -1,0 +1,59 @@
+.booking-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.status-heading {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px; /* Increase padding for better spacing */
+    text-align: center;
+    border-radius: 4px;
+    font-size: 18px; /* Increase font size for better visibility */
+    font-weight: bold;
+    width: 80%; /* Set width to 80% of the parent container */
+    max-width: 400px; /* Set maximum width to prevent it from becoming too wide */
+}
+
+.approved {
+    color: green;
+    border: 2px solid lightgreen;
+    background-color: rgba(144, 238, 144, 0.1); /* Light green background with opacity */
+}
+
+.pending {
+    color: orange;
+    border: 2px solid yellow;
+    background-color: rgba(255, 255, 0, 0.1); /* Light yellow background with opacity */
+}
+
+.booking-info {
+    color: #333;
+    margin-top: 60px; /* Increased margin to accommodate the larger heading */
+}
+
+.booking-info h3 {
+    margin-bottom: 12px;
+}
+
+.booking-info p {
+    margin: 6px 0;
+}
+
+.status-text {
+    margin-top: 10px;
+}
+
+.approved-text {
+    color: green;
+}
+
+.pending-text {
+    color: orange;
+}

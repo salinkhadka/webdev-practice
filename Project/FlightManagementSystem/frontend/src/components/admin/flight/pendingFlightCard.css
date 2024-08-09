@@ -1,0 +1,112 @@
+.pending-flights-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.pending-filter-container {
+    width: 100%;
+    max-width: 1200px;
+    margin-bottom: 20px;
+}
+
+.pending-filter-container h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.pending-filters {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.pending-filters label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.pending-flights-list {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pending-flights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    width: 100%;
+}
+
+.pending-loading-message,
+.pending-error-message {
+    font-size: 18px;
+    color: #ff0000;
+    margin-top: 20px;
+}
+
+.pending-no-flights-message {
+    font-size: 18px;
+    color: #333;
+    margin-top: 20px;
+}
+
+/* Styles for PendingFlightCard */
+.pending-flight-card {
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.pending-flight-card h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.pending-flight-card p {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.pending-flight-card-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.pending-flight-card-actions button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.pending-flight-card-actions button:hover {
+    background-color: #e0e0e0;
+}
+
+.pending-flight-card-actions button:first-of-type {
+    background-color: #4caf50;
+    color: #fff;
+}
+
+.pending-flight-card-actions button:first-of-type:hover {
+    background-color: #45a049;
+}
+
+.pending-flight-card-actions button:last-of-type {
+    background-color: #f44336;
+    color: #fff;
+}
+
+.pending-flight-card-actions button:last-of-type:hover {
+    background-color: #e53935;
+}

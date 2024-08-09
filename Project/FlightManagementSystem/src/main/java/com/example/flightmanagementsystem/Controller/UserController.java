@@ -1,6 +1,7 @@
 package com.example.flightmanagementsystem.Controller;
 
 import com.example.flightmanagementsystem.Entity.User;
+import com.example.flightmanagementsystem.Pojo.AuthPojo;
 import com.example.flightmanagementsystem.Pojo.UserPojo;
 import com.example.flightmanagementsystem.Service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -8,9 +9,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-    @RestController
-    @RequestMapping("/user")
-    @RequiredArgsConstructor
+@RestController
+@RequestMapping("/user")
+@RequiredArgsConstructor
+// @CrossOrigin(origins = "*")
 public class UserController {
     private final UserService userService;
 
@@ -25,7 +27,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public boolean login(@RequestBody User request) {
+    public Integer login(@RequestBody AuthPojo request) {
         String username = request.getUsername();
         String password = request.getPassword();
         return userService.login(username, password);
@@ -40,11 +42,10 @@ public class UserController {
     public void deleteUser(@PathVariable Integer id) {
         userService.deleteUser(id);
     }
-//    @GetMapping("/email")
-//    public User getUserByEmail(@RequestParam String email) {
-//        return userService.getUserByEmail(email);
-//    }
 
+    @GetMapping("/get/{id}")
+    public User getUserById(@PathVariable Integer id) {
+        return userService.getUserById(id);
+    }
 
 }
-

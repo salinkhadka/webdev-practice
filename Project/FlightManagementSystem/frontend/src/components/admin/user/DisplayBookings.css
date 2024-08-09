@@ -1,0 +1,23 @@
+.bookings-container-custom {
+    padding: 20px;
+  }
+  
+  .filter-container-custom {
+    margin-bottom: 20px;
+  }
+  
+  .filters-custom {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .bookings-list-custom {
+    margin-top: 20px;
+  }
+  
+  .bookings-grid-custom {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  

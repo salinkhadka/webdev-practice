@@ -1,0 +1,38 @@
+.flight-card-custom {
+    border: 1px solid #ddd;
+    padding: 16px;
+    margin: 16px;
+    background-color: whitesmoke;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.image-container-custom img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.details-container-custom {
+    text-align: center;
+}
+
+.book-button-custom {
+    margin-top: 8px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    background-color: #4c9baf;
+    color: white;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.book-button-custom:hover {
+    background-color: #3b7a91;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}

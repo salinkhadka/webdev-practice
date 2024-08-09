@@ -37,14 +37,15 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public boolean login(String username, String password) {
-        List<User> listOfUsers = userRepository.findAll();
-        for (User user : listOfUsers) {
-            if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
-                return true;
-            }
-        }
-        return false;
+    public Integer login(String username, String password) {
+        return userRepository.gtUserIDFromPwordANdUname(password,username);
+//        List<User> listOfUsers = userRepository.findAll();
+//        for (User user : listOfUsers) {
+//            if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
+//                return true;
+//            }
+//        }
+//        return false;
     }
 
     public User updateUser(Integer id, UserPojo userPojo) {

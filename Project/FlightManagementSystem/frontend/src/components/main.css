@@ -1,0 +1,20 @@
+
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.navbar-main {
+  flex: 0 1 auto; /* Navbar takes only the height it needs */
+}
+
+.outlet {
+  flex: 1 1 auto; /* Outlet takes the remaining available space */
+  overflow: auto; /* Ensure content in Outlet is scrollable if it overflows */
+}
+
+.footer {
+  flex: 0 1 auto; /* Footer takes only the height it needs */
+}

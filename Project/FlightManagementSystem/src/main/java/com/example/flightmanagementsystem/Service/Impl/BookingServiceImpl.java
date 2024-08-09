@@ -10,7 +10,6 @@ import com.example.flightmanagementsystem.Repository.UserRepository;
 import com.example.flightmanagementsystem.Service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -33,7 +32,7 @@ public class BookingServiceImpl implements BookingService {
     @Override
     public Booking getBookingById(Integer id) {
         return bookingRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Booking not found"));
+                .orElseThrow(() -> new RuntimeException("Booking not fou nd"));
     }
 
     @Override
@@ -55,7 +54,43 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
+    public List<Booking> getBookingsByUserId(Integer userId) {
+        return bookingRepository.findByUserId(userId);
+    }
+
+    @Override
+    public Booking updateBooking(Integer id, BookingPojo bookingPojo) {
+        if (id == null) {
+            throw new IllegalArgumentException("ID must not be null");
+        }
+
+        // Retrieve existing booking
+        Booking booking = bookingRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Booking not found for ID: " + id));
+
+        // Validate and retrieve related entities
+        User user = userRepository.findById(bookingPojo.getUserId())
+                .orElseThrow(() -> new RuntimeException("User not found for ID: " + bookingPojo.getUserId()));
+
+        Flight flight = flightRepository.findById(bookingPojo.getFlightId())
+                .orElseThrow(() -> new RuntimeException("Flight not found for ID: " + bookingPojo.getFlightId()));
+
+        // Update booking details
+        booking.setUser(user);
+        booking.setFlight(flight);
+        booking.setBookingDate(bookingPojo.getBookingDate());
+        booking.setTotalAmount(bookingPojo.getTotalAmount());
+        booking.setStatus(bookingPojo.isStatus());
+
+        // Save and return updated booking
+        return bookingRepository.save(booking);
+    }
+
+
+    @Override
     public void deleteBooking(Integer id) {
         bookingRepository.deleteById(id);
     }
+
+
 }

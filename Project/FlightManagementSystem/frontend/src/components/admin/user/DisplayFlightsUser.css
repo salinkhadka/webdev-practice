@@ -1,0 +1,40 @@
+.flights-container-custom {
+    display: flex;
+    height: 100vh; /* Full viewport height */
+}
+
+.filter-container-custom {
+    flex: 1;
+    background-color: rgb(219, 204, 204);
+    padding: 20px;
+    margin: 5px;
+    border-radius: 8px;
+    border-right: 1px solid #410909;
+    height: 100%; /* Full height of the parent container */
+    overflow-y: auto; /* Add vertical scroll if content overflows */
+}
+
+.filters-custom h3 {
+    margin-bottom: 10px;
+}
+
+.filters-custom label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.flights-list-custom {
+    flex: 3;
+    background-color: rgb(219, 204, 204);
+    border-radius: 8px;
+    margin: 5px;
+    padding: 20px;
+    height: 100%; /* Full height of the parent container */
+    overflow-y: auto; /* Add vertical scroll if content overflows */
+}
+
+.flights-grid-custom {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}

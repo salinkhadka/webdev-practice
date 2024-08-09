@@ -5,39 +5,38 @@ import { toast } from 'react-toastify';
 
 const Login: React.FC = () => {
 
-    useEffect(()=>{
-        if(localStorage.getItem("userId")){
-            window.location.href="/home"
+    useEffect(() => {
+        if (localStorage.getItem("userId")) {
+            window.location.href = "/home";
         }
-    },[])
+    }, []);
+
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
 
     const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log (email,password)
-        // Handle login logic
+        console.log(email, password);
 
-        const payload={username:email,password:password}
-        axios.post("http://localhost:8080/user/login",payload).then(res=>{
-            console.log(res)
-            if(res?.data==""){
-                
-                if(res?.data==0){
-                    localStorage.setItem("userId",res?.data)
-                     window.location.href="/admin"
-                    return;
-                }
+        const payload = { username: email, password: password };
+        
+        axios.post("http://localhost:8080/user/login", payload).then(res => {
+            console.log(res);
+            const userId = res?.data;
 
-                toast("Login failed")
-
-            }else{
-                localStorage.setItem("userId",res?.data)
-
-                window.location.href="/home"
-
+            if (userId === 0) {
+                localStorage.setItem("userId", userId);
+                window.location.href = "/admin";
+            } else if (userId) {
+                localStorage.setItem("userId", userId);
+                window.location.href = "/home";
+            } else {
+                toast("Login failed");
             }
-        })
+        }).catch(error => {
+            console.error("There was an error with the login request:", error);
+            toast("Login failed");
+        });
     };
 
     return (

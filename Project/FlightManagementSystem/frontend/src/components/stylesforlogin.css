@@ -1,7 +1,7 @@
 /* General styles */
 body {
     font-family: Arial, sans-serif;
-    background-image:url('../assets/bg.png');
+    /* background-image:url('../assets/bg.png'); */
     background-size: cover;
     height: 100vh;
     margin: 0;
