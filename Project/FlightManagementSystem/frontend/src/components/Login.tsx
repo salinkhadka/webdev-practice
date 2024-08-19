@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './stylesforlogin.css'; // Import the CSS file
 import axios from 'axios';
-import { toast } from 'react-toastify';
 
 const Login: React.FC = () => {
 
@@ -14,15 +13,16 @@ const Login: React.FC = () => {
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
 
-    const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         console.log(email, password);
 
         const payload = { username: email, password: password };
-        
-        axios.post("http://localhost:8080/user/login", payload).then(res => {
-            console.log(res);
-            const userId = res?.data;
+
+        try {
+            const response = await axios.post("http://localhost:8080/user/login", payload);
+            console.log(response);
+            const userId = response?.data;
 
             if (userId === 0) {
                 localStorage.setItem("userId", userId);
@@ -31,12 +31,14 @@ const Login: React.FC = () => {
                 localStorage.setItem("userId", userId);
                 window.location.href = "/home";
             } else {
-                toast("Login failed");
+                // Handle login failed case without toast
+                console.error("Login failed: User ID not received.");
             }
-        }).catch(error => {
+        } catch (error) {
             console.error("There was an error with the login request:", error);
-            toast("Login failed");
-        });
+            // Handle error case without toast
+            console.error("Login failed: An error occurred.");
+        }
     };
 
     return (

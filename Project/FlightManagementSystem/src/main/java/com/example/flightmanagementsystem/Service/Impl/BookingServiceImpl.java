@@ -32,7 +32,7 @@ public class BookingServiceImpl implements BookingService {
     @Override
     public Booking getBookingById(Integer id) {
         return bookingRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Booking not fou nd"));
+                .orElseThrow(() -> new RuntimeException("Booking not found"));
     }
 
     @Override
@@ -48,7 +48,7 @@ public class BookingServiceImpl implements BookingService {
         booking.setFlight(flight);
         booking.setBookingDate(bookingPojo.getBookingDate());
         booking.setTotalAmount(bookingPojo.getTotalAmount());
-        booking.setStatus(bookingPojo.isStatus());
+        booking.setStatus(bookingPojo.getStatus()); // Status as Integer
 
         return bookingRepository.save(booking);
     }
@@ -64,25 +64,21 @@ public class BookingServiceImpl implements BookingService {
             throw new IllegalArgumentException("ID must not be null");
         }
 
-        // Retrieve existing booking
         Booking booking = bookingRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Booking not found for ID: " + id));
 
-        // Validate and retrieve related entities
         User user = userRepository.findById(bookingPojo.getUserId())
                 .orElseThrow(() -> new RuntimeException("User not found for ID: " + bookingPojo.getUserId()));
 
         Flight flight = flightRepository.findById(bookingPojo.getFlightId())
                 .orElseThrow(() -> new RuntimeException("Flight not found for ID: " + bookingPojo.getFlightId()));
 
-        // Update booking details
         booking.setUser(user);
         booking.setFlight(flight);
         booking.setBookingDate(bookingPojo.getBookingDate());
         booking.setTotalAmount(bookingPojo.getTotalAmount());
-        booking.setStatus(bookingPojo.isStatus());
+        booking.setStatus(bookingPojo.getStatus()); // Ensure status is updated
 
-        // Save and return updated booking
         return bookingRepository.save(booking);
     }
 
@@ -91,6 +87,4 @@ public class BookingServiceImpl implements BookingService {
     public void deleteBooking(Integer id) {
         bookingRepository.deleteById(id);
     }
-
-
 }

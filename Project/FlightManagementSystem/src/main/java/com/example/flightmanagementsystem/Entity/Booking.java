@@ -30,6 +30,6 @@ public class Booking {
     @Column(name = "total_amount")
     private int totalAmount;
 
-    @Column(name = "status" ,nullable = true)
-    private boolean status;
+    @Column(name = "status", nullable = true)
+    private Integer status;
 }

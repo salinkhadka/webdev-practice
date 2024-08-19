@@ -1,70 +1,122 @@
 import React from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import './pendingFlightCard.css';
+import 'react-toastify/dist/ReactToastify.css';
+import './pendingFlightCard.css'; // Add your CSS file
 
-function PendingFlightCard({ flight, onApprove, onDecline, onFetch }) {
+interface PendingFlightCardProps {
+    flight?: {
+        bookingid: number;
+        user: {
+            id: number; // Ensure user ID is present
+            username: string;
+        };
+        flight: {
+            id: number; // Ensure flight ID is present
+            airline: string;
+            flightNumber: string;
+            departureTime: string;
+            arrivalTime: string;
+            origin: string;
+            destination: string;
+            price: number;
+        };
+        bookingDate: string;
+        totalAmount: number;
+        status: number; // Status should be a number
+    };
+    onApprove: () => void;
+    onDecline: () => void;
+}
+
+const PendingFlightCard: React.FC<PendingFlightCardProps> = ({ flight, onApprove, onDecline }) => {
+    if (!flight) {
+        return <div>Error: Flight data is not available</div>;
+    }
+
+    // Add logging to check the flight data structure
+    console.log('Flight data:', flight);
+
     const handleApprove = async () => {
-        const bookingId = flight.bookingid; // Use bookingid from flight
-        const userId = flight.user.id; // Access userId from the user object
-        const flightId = flight.flight.id; // Access flightId from the flight object
-
-        if (!bookingId || bookingId <= 0 || !userId || !flightId) {
-            toast.error('Invalid booking details.');
-            return;
-        }
-
+        const payload = {
+            bookingid: flight.bookingid,
+            userId: flight.user.id, // Ensure userId is being retrieved correctly
+            flightId: flight.flight.id, // Ensure flightId is being retrieved correctly
+            bookingDate: flight.bookingDate,
+            totalAmount: flight.totalAmount,
+            status: 2, // Approved status
+        };
+    
         try {
-            await axios.put(`http://localhost:8080/bookings/updateStatus/${bookingId}`, {
-                bookingid: bookingId,
-                userId: userId,
-                flightId: flightId,
-                bookingDate: flight.bookingDate,
-                totalAmount: flight.totalAmount,
-                status: true // Change status to true
-            });
-            toast.success('Booking approved successfully');
-            if (onApprove) onApprove(); // Refresh the list of pending bookings
-            if (onFetch) onFetch(); // Reload data
+            const response = await axios.put(`http://localhost:8080/bookings/updateStatus/${flight.bookingid}`, payload);
+    
+            if (response.status === 200 || response.status === 201) { 
+                // Check for successful response status codes
+                toast.success(`Booking ${flight.bookingid} approved successfully!`);
+                onApprove(); // Refresh data
+            } else {
+                toast.error(`Unexpected response code: ${response.status}`);
+            }
         } catch (error) {
-            console.error('Error approving booking:', error.response ? error.response.data : error.message);
-            toast.error('An error occurred while approving the booking.');
+            console.error('Error approving booking:', error);
+            if (error.response && error.response.data) {
+                // Show specific error message from the server if available
+                toast.error(`Failed to approve the booking: ${error.response.data.message}`);
+            } else {
+                toast.error('Failed to approve the booking.');
+            }
         }
     };
-
+    
     const handleDecline = async () => {
-        const bookingId = flight.bookingid; // Use bookingid from flight
-
-        if (!bookingId || bookingId <= 0) {
-            toast.error('Invalid booking ID.');
-            return;
-        }
-
+        const payload = {
+            bookingid: flight.bookingid,
+            userId: flight.user.id, // Ensure userId is being retrieved correctly
+            flightId: flight.flight.id, // Ensure flightId is being retrieved correctly
+            bookingDate: flight.bookingDate,
+            totalAmount: flight.totalAmount,
+            status: 3, // Declined status
+        };
+    
         try {
-            await axios.delete(`http://localhost:8080/bookings/delete/${bookingId}`);
-            toast.success('Booking declined successfully');
-            if (onDecline) onDecline(); // Refresh the list of pending bookings
-            if (onFetch) onFetch(); // Reload data
+            const response = await axios.put(`http://localhost:8080/bookings/updateStatus/${flight.bookingid}`, payload);
+    
+            if (response.status === 200 || response.status === 201) { 
+                // Check for successful response status codes
+                toast.success(`Booking ${flight.bookingid} declined successfully!`);
+                onDecline(); // Refresh data
+            } else {
+                toast.error(`Unexpected response code: ${response.status}`);
+            }
         } catch (error) {
-            console.error('Error declining booking:', error.response ? error.response.data : error.message);
-            toast.error('An error occurred while declining the booking.');
+            console.error('Error declining booking:', error);
+            if (error.response && error.response.data) {
+                // Show specific error message from the server if available
+                toast.error(`Failed to decline the booking: ${error.response.data.message}`);
+            } else {
+                toast.error('Failed to decline the booking.');
+            }
         }
     };
+    
 
     return (
         <div className="pending-flight-card">
-            <h3>{flight.flight.airline || 'No Airline Available'}</h3>
-            <p>Flight Number: {flight.flight.flightNumber || 'No Flight Number Available'}</p>
-            <p>Departure Time: {flight.flight.departureTime || 'No Departure Time Available'}</p>
-            <p>Arrival Time: {flight.flight.arrivalTime || 'No Arrival Time Available'}</p>
-            <p>Origin: {flight.flight.origin || 'No Origin Available'}</p>
-            <p>Destination: {flight.flight.destination || 'No Destination Available'}</p>
-            <div className="pending-flight-card-actions">
+            <h4>Booking ID: {flight.bookingid}</h4>
+            <p><strong>Username:</strong> {flight.user.username}</p>
+            <p><strong>Flight:</strong> {flight.flight.airline} {flight.flight.flightNumber}</p>
+            <p><strong>Departure:</strong> {flight.flight.departureTime}</p>
+            <p><strong>Arrival:</strong> {flight.flight.arrivalTime}</p>
+            <p><strong>Origin:</strong> {flight.flight.origin}</p>
+            <p><strong>Destination:</strong> {flight.flight.destination}</p>
+            <p><strong>Total Amount:</strong> ${flight.totalAmount}</p>
+            <p><strong>Booking Date:</strong> {flight.bookingDate}</p>
+            <div className="pending-flight-actions">
                 <button onClick={handleApprove}>Approve</button>
                 <button onClick={handleDecline}>Decline</button>
             </div>
         </div>
     );
-}
+};
 
 export default PendingFlightCard;

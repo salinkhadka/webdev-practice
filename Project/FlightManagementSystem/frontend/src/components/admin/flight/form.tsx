@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import './flightadd.css'
+import './flightadd.css';
 
 function FlightAdd() {
     const [flight, setFlight] = useState({
-        id: '',
         airline: '',
         flightNumber: '',
         departureTime: '',
@@ -39,7 +38,6 @@ function FlightAdd() {
                     toast.success('Flight added successfully');
                     // Reset form
                     setFlight({
-                        id: '',
                         airline: '',
                         flightNumber: '',
                         departureTime: '',
@@ -69,18 +67,6 @@ function FlightAdd() {
             <div className="flightadd-card">
                 <h2>Add Flight</h2>
                 <form onSubmit={handleSubmit}>
-                    <div className="form-group">
-                        <label htmlFor="id">ID:</label>
-                        <input
-                            type="text"
-                            id="id"
-                            name="id"
-                            value={flight.id}
-                            onChange={handleChange}
-                            required
-                            aria-label="ID"
-                        />
-                    </div>
                     <div className="form-group">
                         <label htmlFor="airline">Airline:</label>
                         <input
@@ -156,7 +142,7 @@ function FlightAdd() {
                     <div className="form-group">
                         <label htmlFor="price">Price:</label>
                         <input
-                            type="number" 
+                            type="number"
                             id="price"
                             name="price"
                             value={flight.price}
@@ -167,7 +153,6 @@ function FlightAdd() {
                     </div>
                     <button type="submit" className="flightadd-button">Add Flight</button>
                 </form>
-                <a onClick={() => { localStorage.clear(); window.location.href = "/home"; }}>Logout</a>
             </div>
         </div>
     );

@@ -16,10 +16,24 @@ const Home: React.FC = () => {
                     if (user && user.username) {
                         setUserName(user.username);
                         localStorage.setItem("userName", user.username); // Store the username in localStorage
+                        // Removed toast success message
                     }
                 } catch (error) {
+                    if (error.response?.status === 404) {
+                        // Handle error without toast
+                        console.error('User not found. Please check your user ID.');
+                    } else if (error.response?.status === 500) {
+                        // Handle error without toast
+                        console.error('Server error. Please try again later.');
+                    } else {
+                        // Handle error without toast
+                        console.error('An unexpected error occurred. Please try again.');
+                    }
                     console.error("There was an error fetching the user details:", error);
                 }
+            } else {
+                // Handle missing user ID without toast
+                console.info('User ID is missing. Please log in.');
             }
         };
 
@@ -49,6 +63,8 @@ const Home: React.FC = () => {
                     <li>Secure Payments</li>
                 </ul>
             </section>
+
+            {/* Removed ToastContainer */}
         </div>
     );
 }

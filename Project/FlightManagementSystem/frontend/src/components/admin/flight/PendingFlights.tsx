@@ -9,10 +9,12 @@ function PendingFlights() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
 
+    // Fetch pending bookings from the backend
     const fetchPendingBookings = async () => {
         try {
             const { data } = await axios.get('http://localhost:8080/bookings/get');
-            const pending = data.filter(booking => !booking.status);
+            // Filter for bookings with status '1' (pending)
+            const pending = data.filter((booking) => booking.status === 1);
             setPendingBookings(pending);
         } catch (error) {
             console.error('Error fetching pending bookings:', error);
@@ -32,15 +34,7 @@ function PendingFlights() {
 
     return (
         <div className="pending-flights-container">
-            <div className="pending-filter-container">
-                <h2>Pending Bookings</h2>
-                <div className="pending-filters">
-                    <h3>Suggested For You</h3>
-                    <label><input type="checkbox" /> Early Bird Deals</label>
-                    <label><input type="checkbox" /> Free Cancellation</label>
-                    <label><input type="checkbox" /> Breakfast Included</label>
-                </div>
-            </div>
+            <h2>Pending Bookings</h2>
             <div className="pending-flights-list">
                 {pendingBookings.length === 0 ? (
                     <p className="pending-no-flights-message">No pending bookings available</p>
@@ -48,11 +42,10 @@ function PendingFlights() {
                     <div className="pending-flights-grid">
                         {pendingBookings.map((booking) => (
                             <PendingFlightCard
-                                key={booking.bookingid} // Use a unique key here
+                                key={booking.bookingid}
                                 flight={booking}
-                                onApprove={() => fetchPendingBookings()} // Refresh data on approval
-                                onDecline={() => fetchPendingBookings()} // Refresh data on decline
-                                onFetch={fetchPendingBookings} // Pass fetch function for data reload
+                                onApprove={() => fetchPendingBookings()} // Refresh data
+                                onDecline={() => fetchPendingBookings()} // Refresh data
                             />
                         ))}
                     </div>

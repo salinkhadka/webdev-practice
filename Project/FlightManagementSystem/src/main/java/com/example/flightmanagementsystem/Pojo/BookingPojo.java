@@ -19,5 +19,5 @@ public class BookingPojo {
     private Integer flightId; // Assuming you refer to Flight by ID
     private LocalDate bookingDate;
     private Integer totalAmount;
-    private boolean status;
+    private Integer status;
 }

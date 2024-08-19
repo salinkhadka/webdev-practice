@@ -14,6 +14,10 @@ import DisplayFlightsUser from './components/admin/user/DisplayFlightsUser';
 import PendingFlights from './components/admin/flight/PendingFlights';
 import DisplayBookings from './components/admin/user/DisplayBookings';
 import FlightRoute from './components/admin/user/FlightRoutes';
+import DisplayUsers from './components/admin/user/DisplayUsers';
+import ForgotPassword from './components/ForgotPassword';
+import ResetPassword from './components/ResetPassword';
+import SubscriptionForm from './components/admin/user/UserProfile';
 
 
 
@@ -35,10 +39,13 @@ function App() {
         { path: "/book", element: <DisplayFlightsUser /> },
         { path: "/ticket-status", element: <DisplayBookings/> },
         { path: "/route-flight", element: <FlightRoute/> },
+        { path: "/profile", element: <SubscriptionForm/> },
       ],
     },
     { path: "/login", element: <Login /> },
     { path: "/signup", element: <Signup /> },
+    { path: "/ForgotPassword", element: <ForgotPassword /> },
+    { path: "/resetpassword", element: <ResetPassword /> },
     { path: "*", element: <UnauthorizedPage /> },
   ];
 
@@ -50,6 +57,7 @@ function App() {
         { path: "add-flight", element: <FlightAdd /> },
         { path: "view-flights", element: <DisplayFlights /> },
         { path: "pendingFlights", element: <PendingFlights/> },
+        { path: "view-users", element: <DisplayUsers/> },
         // Add more routes here as needed
         // { path: "view-users", element: <ViewUsers /> },
       ],

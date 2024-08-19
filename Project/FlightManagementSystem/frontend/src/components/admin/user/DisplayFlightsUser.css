@@ -1,8 +1,10 @@
+/* Container for the entire flight display component */
 .flights-container-custom {
     display: flex;
     height: 100vh; /* Full viewport height */
 }
 
+/* Style for the filter container */
 .filter-container-custom {
     flex: 1;
     background-color: rgb(219, 204, 204);
@@ -14,15 +16,66 @@
     overflow-y: auto; /* Add vertical scroll if content overflows */
 }
 
+/* Style for filter section headers */
 .filters-custom h3 {
     margin-bottom: 10px;
 }
 
-.filters-custom label {
+/* Style for filter labels and controls */
+.filters-custom label,
+.filters-custom select {
     display: block;
     margin-bottom: 10px;
 }
 
+/* Style for number inputs */
+.filters-custom input[type="number"] {
+    padding: 5px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100px;
+}
+
+/* Style for select dropdown */
+.filters-custom select {
+    padding: 5px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 200px;
+}
+
+/* Style for the filter button */
+.filters-custom button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    margin-right: 10px;
+    margin-bottom: 10px; /* Add margin bottom for spacing between buttons */
+}
+
+/* Hover effect for the filter button */
+.filters-custom button:hover {
+    background-color: #0056b3;
+}
+
+/* Style for the clear filters button */
+.filters-custom .clear-filters {
+    background-color: #dc3545;
+}
+
+/* Hover effect for the clear filters button */
+.filters-custom .clear-filters:hover {
+    background-color: #c82333;
+}
+
+/* Container for the flight list */
 .flights-list-custom {
     flex: 3;
     background-color: rgb(219, 204, 204);
@@ -33,8 +86,51 @@
     overflow-y: auto; /* Add vertical scroll if content overflows */
 }
 
+/* Grid layout for flight cards */
 .flights-grid-custom {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 20px;
+}
+
+/* Style for individual flight cards */
+.flight-card-custom {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+/* Hover effect for flight cards */
+.flight-card-custom:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Style for flight card titles */
+.flight-card-custom h4 {
+    margin: 0 0 10px 0;
+}
+
+/* Style for flight card details */
+.flight-card-custom p {
+    margin: 5px 0;
+}
+
+/* Style for booking button on flight cards */
+.flight-card-custom button {
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+/* Hover effect for booking button */
+.flight-card-custom button:hover {
+    background-color: #218838;
 }

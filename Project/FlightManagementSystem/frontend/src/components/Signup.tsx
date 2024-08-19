@@ -6,29 +6,23 @@ import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
 const Signup: React.FC = () => {
-    // const [name, setName] = useState<string>('');
-    // const [email, setEmail] = useState<string>('');
-    // const [password, setPassword] = useState<string>('');
-    // const [confirmPassword, setConfirmPassword] = useState<string>('');
+    const navigate = useNavigate();
+    const { register, handleSubmit } = useForm();
 
-    // const handleSignup = (e: React.FormEvent<HTMLFormElement>) => {
-    //     e.preventDefault();
-    //     // Handle signup logic
-    // };
+    const submit = (data: any) => {
+        console.log(data);
 
-    const navigate= useNavigate();
-
-    const {register,handleSubmit} =useForm()
-
-    const submit=(data:any)=>{
-        console.log(data)
-
-        axios.post("http://localhost:8080/user/save",data).then(res=>{
-            console.log(res)
-toast("Data saved successfully");
-navigate("/Login")
-        })
-    }
+        axios.post("http://localhost:8080/user/save", data)
+            .then(res => {
+                console.log(res);
+                toast("Data saved successfully");
+                navigate("/Login");
+            })
+            .catch(err => {
+                console.error(err);
+                toast.error("Error saving data");
+            });
+    };
 
     return (
         <div className="signup-container">
@@ -36,23 +30,21 @@ navigate("/Login")
                 <h2>Sign Up</h2>
                 <form onSubmit={handleSubmit(submit)}>
                     <div className="form-group">
-                        <label htmlFor="name">Name:</label>
+                        <label htmlFor="user_name">Name:</label>
                         <input
                             type="text"
-                            id="name"
-                           {...register("user_name")}
+                            id="user_name"
+                            {...register("user_name")} // Matches the UserPojo field
                             required
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="email">Email:</label>
+                        <label htmlFor="user_email">Email:</label>
                         <input
                             type="email"
-                            id="email"
-                            {...register("user_email")}
-
+                            id="user_email"
+                            {...register("user_email")} // Matches the UserPojo field
                             required
-                            aria-label="Email"
                         />
                     </div>
                     <div className="form-group">
@@ -60,10 +52,26 @@ navigate("/Login")
                         <input
                             type="password"
                             id="password"
-                            {...register("password")}
-
+                            {...register("password")} // Matches the UserPojo field
                             required
-                            aria-label="Password"
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="contact_number">Contact Number:</label>
+                        <input
+                            type="text"
+                            id="contact_number"
+                            {...register("contact_number")} // Matches the UserPojo field
+                            required
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="user_address">Address:</label>
+                        <input
+                            type="text"
+                            id="user_address"
+                            {...register("user_address")} // Matches the UserPojo field
+                            required
                         />
                     </div>
                     <div className="form-group">
@@ -71,23 +79,17 @@ navigate("/Login")
                         <input
                             type="password"
                             id="confirmPassword"
-                            {...register("confirm_password")}
-
+                            {...register("confirm_password")} // Not in UserPojo but for frontend validation
                             required
-                            aria-label="Confirm Password"
                         />
                     </div>
                     <button type="submit" className="signup-button">Sign Up</button>
                 </form>
                 <div className="login-message">
                     <p>Already have an account?</p>
-                    <a href="/Login"><button className="login-button">
-                        Login
-                    </button></a>
+                    <a href="/Login"><button className="login-button">Login</button></a>
                 </div>
             </div>
-
-           
         </div>
     );
 };
